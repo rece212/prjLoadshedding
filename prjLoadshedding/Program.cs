@@ -12,28 +12,42 @@ namespace prjLoadshedding
             Boolean bLoop = true;
             while(bLoop)
             {
-                
+                Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Welcome to Loadshedding Center");
                 Console.WriteLine("Main menu : Enter 1 to view Schedule");
                 Console.WriteLine("Main menu : Enter 2 to Add to the Schedule");
                 Console.WriteLine("Main menu : Enter 3 to change the stage Schedule");
                 Console.WriteLine("Main menu : Enter 0 or any other key to quit");
 
-                int Menu = Convert.ToInt32(Console.ReadLine());
+                int Menu = -1;
+                try
+                {
+                     Menu = Convert.ToInt32(Console.ReadLine());
+                }
+                catch(Exception)
+                {
+                    Menu = -1;
+                }
+                
 
 
                 if (Menu == 1)//view your schedule
                 {
                     Console.Write("Please enter your area: ");
                     String strAreainput = Console.ReadLine();
-                    Console.Clear();
+                    
                     if (sd.setArea(strAreainput))
                     {
                         Console.WriteLine(sd.ToString());
+                        System.Threading.Thread.Sleep(5000);
                     }
                     else
                     {
+                        Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Not found area");
+                        Console.ResetColor();
+                        System.Threading.Thread.Sleep(1000);
                     }
 
                 }
@@ -56,11 +70,36 @@ namespace prjLoadshedding
                 else if (Menu == 3)//change the stage
                 {
                     Console.Write("Please enter from 0 to 4 , what stage of loadshedding it is: ");
-                    sd.setStage = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        sd.setStage = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please enter in a valid number and try again");
+                        Console.ResetColor();
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                    catch(Exception)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You entered something the program did not like, try again");
+                        Console.ResetColor();
+                        System.Threading.Thread.Sleep(1000);
+                    }
+
+
                 }
                 else // wrong input selected
                 {
                     Console.WriteLine("Shutting down now");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine("Shutting 3");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine("Shutting 2");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine("Shutting 1");
                     bLoop = false;
                 }
             }
