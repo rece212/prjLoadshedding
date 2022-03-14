@@ -40,6 +40,7 @@ namespace prjLoadshedding
             String Stage2, String Stage3, String Stage4)
         {
             iCount++;
+
             PELoad[iCount] = new Area(strName, Stage1,
                 Stage2, Stage3, Stage4);
         }

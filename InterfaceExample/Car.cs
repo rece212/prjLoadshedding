@@ -25,9 +25,15 @@ namespace InterfaceExample
             this.strMake = Make;
         }
 
+
         public void setSpeed(int Speed)
         {
             this.strSpeed = Speed+"\kmph";
+        }
+
+        public void setSpeed()
+        {
+            throw new NotImplementedException();
         }
     }
 }

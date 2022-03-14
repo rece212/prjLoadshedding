@@ -9,7 +9,7 @@ namespace InterfaceExample
     interface ICar
     {
         public String GetMake();
-        public void setMake();
+        public void setMake(String Make);
         public String GetSpeed();
         public void setSpeed();
     }
